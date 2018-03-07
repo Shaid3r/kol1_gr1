@@ -28,32 +28,32 @@
 
 
 class Matrix:
-	def __init__(self, a, b, c, d):
-		self.a = a
-		self.b = b
-		self.c = c
-		self.d = d
+	def __init__(self, n, m):
+		self.rows = n
+		self.columns = m
+		self.data = [[0] * m for x in range(n)]
 
 	def __add__(self, matrix):
-		return Matrix(self.a + matrix.a, self.b + matrix.b, self.c + matrix.c, self.d + matrix.d)
+		m = Matrix(n, m)
+		for i in range(n):
+			for j in range(m):
+				m.data[i][j] += self.data[i][j]
+		return m
 
-	def __mul__(self, number):
-		return Matrix(self.a * number, self.b * number, self.c * number, self.d * number)
+	def __index__(self, num):
+		return
 
-	__rmul__ = __mul__
+	# def __mul__(self, number):
+	# 	return Matrix(self.a * number, self.b * number, self.c * number, self.d * number)
 
 	def __str__(self):
-		return "Matrix: ({},{},{},{})".format(
-			self.a, self.b, self.c, self.d)
+		s = ""
+		for row in self.data:
+			s += str(row) + "\n"
+		return s[:-1]
 
 if __name__ == "__main__":
-	print("Matrix_1:")
-	matrix_1 = Matrix(4,5,6,7)
+	print("Matrix:")
+	matrix_1 = Matrix(2,3)
+	# matrix_1[1][3] = 3
 	print(matrix_1)
-	print("Matrix_2:")
-	matrix_2 = Matrix(2,2,2,1)
-	print(matrix_2 )
-	print("Matrix_1 + matrix 2:")
-	print(matrix_1 + matrix_2)
-	print("Matrix_1 * 3:")
-	print(matrix_1 * 3)
