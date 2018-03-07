@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 #Write a library that contains a class that can represent any 2𝑥2 real matrice. 
 #Include two functions to calculate the sum and product of two matrices. 
 #Next, write a program that imports this library module and use it to perform calculations.
@@ -24,3 +25,35 @@
 #
 #Delete these comments before commit!
 #Good luck.
+
+
+class Matrix:
+	def __init__(self, a, b, c, d):
+		self.a = a
+		self.b = b
+		self.c = c
+		self.d = d
+
+	def __add__(self, matrix):
+		return Matrix(self.a + matrix.a, self.b + matrix.b, self.c + matrix.c, self.d + matrix.d)
+
+	def __mul__(self, number):
+		return Matrix(self.a * number, self.b * number, self.c * number, self.d * number)
+
+	__rmul__ = __mul__
+
+	def __str__(self):
+		return "Matrix: ({},{},{},{})".format(
+			self.a, self.b, self.c, self.d)
+
+if __name__ == "__main__":
+	print("Matrix_1:")
+	matrix_1 = Matrix(4,5,6,7)
+	print(matrix_1)
+	print("Matrix_2:")
+	matrix_2 = Matrix(2,2,2,1)
+	print(matrix_2 )
+	print("Matrix_1 + matrix 2:")
+	print(matrix_1 + matrix_2)
+	print("Matrix_1 * 3:")
+	print(matrix_1 * 3)
